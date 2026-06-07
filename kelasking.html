@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Bahagia — Premium Coffee & Eatery</title>
+    <!-- Google Fonts: Playfair Display (Serif Mewah) & Plus Jakarta Sans (Clean & Modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0B0B0C;
+            --secondary-dark: #121215;
+            --surface-dark: #1A1A1E;
+            --accent-gold: #E5C07B;
+            --accent-gold-glow: rgba(229, 192, 123, 0.15);
+            --text-light: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --text-dim: #6B7280;
+            --border-color: rgba(229, 192, 123, 0.08);
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            
+            /* Suhu Warna */
+            --temp-hot: #FF6B6B;
+            --temp-cold: #4DABF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAVBAR PREMIUM MELEBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.8rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(to bottom, rgba(11,11,12,0.9) 0%, rgba(11,11,12,0) 100%);
+        }
+
+        .navbar.scrolled {
+            padding: 1.2rem 4rem;
+            background: rgba(18, 18, 21, 0.85);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+        }
+
+        .smile-logo {
+            width: 34px;
+            height: 34px;
+            fill: none;
+            stroke: var(--accent-gold);
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            transition: transform 0.5s ease;
+        }
+
+        .logo-container:hover .smile-logo {
+            transform: rotate(15deg) scale(1.08);
+        }
+
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.8rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-light);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION SINEMATIK */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('WARUNG-GAMBAR-1.jpg') center/cover no-repeat;
+            z-index: 0;
+            transform: scale(1.02);
+            filter: brightness(65%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(11,11,12,0.4) 0%, rgba(11,11,12,0.95) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 950px;
+        }
+
+        .hero-hashtag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-gold);
+            margin-bottom: 1.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 2.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+
+        .btn-primary:hover {
+            background-color: #EFCE8F;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(229, 192, 123, 0.3);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-light);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            background-color: rgba(255,255,255,0.03);
+            transform: translateY(-3px);
+        }
+
+        /* SECTION ABSTRACT */
+        section {
+            padding: 9rem 4rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            margin-bottom: 1.2rem;
+            display: block;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* AMBIANCE SECTION */
+        .ambiance {
+            background-color: var(--secondary-dark);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0;
+            align-items: center;
+        }
+
+        .ambiance-text {
+            padding: 8rem;
+        }
+
+        .ambiance-text p {
+            color: var(--text-muted);
+            margin-top: 1.8rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .ambiance-img {
+            height: 100%;
+            min-height: 600px;
+            background: url('WARUNG-GAMBAR-2.jpg') center/cover no-repeat;
+        }
+
+        /* HORIZONTAL SCROLL GALLERY SECTION */
+        .gallery-section {
+            background-color: var(--primary-dark);
+            padding: 8rem 0 8rem 4rem;
+            overflow: hidden;
+        }
+
+        .gallery-wrapper {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding-bottom: 2rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-gold) var(--secondary-dark);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .gallery-wrapper::-webkit-scrollbar-track {
+            background: var(--secondary-dark);
+        }
+        
+        .gallery-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--accent-gold);
+        }
+
+        .gallery-item {
+            flex: 0 0 420px;
+            scroll-snap-align: start;
+            position: relative;
+            height: 520px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: brightness(75%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+            filter: brightness(90%);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(to top, rgba(11,11,12,0.95) 0%, rgba(11,11,12,0) 100%);
+            z-index: 2;
+        }
+
+        .gallery-caption h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* TEAM & OWNER SECTION */
+        .team-section {
+            background-color: var(--secondary-dark);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            border-radius: 6px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(229, 192, 123, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .team-img-box {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            margin-bottom: 1.8rem;
+            border-radius: 4px;
+        }
+
+        .team-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-img-box img {
+            transform: scale(1.04);
+        }
+
+        .team-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .team-card .role {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .team-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* INFO CARDS */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background-color: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 4rem 3rem;
+            text-align: center;
+            border-radius: 6px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .info-card i {
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* NEW ELEGAN MENU SECTION MELEBAR */
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-category-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 4.5rem;
+            row-gap: 2.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            background: rgba(18, 18, 21, 0.4);
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 6px;
+        }
+
+        .menu-item:hover {
+            background: rgba(18, 18, 21, 0.9);
+            border-color: rgba(229, 192, 123, 0.3);
+            transform: translateX(6px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .menu-img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .menu-item:hover .menu-img {
+            transform: scale(1.03);
+            border-color: var(--accent-gold);
+        }
+
+        .menu-details {
+            flex-grow: 1;
+        }
+
+        .menu-item-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .menu-item-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Desain Kolom Harga & Suhu Ringkas & Bersih */
+        .price-container {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .temp-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(11, 11, 12, 0.6);
+            padding: 0.4rem 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            min-width: 70px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .temp-box.hot i {
+            color: var(--temp-hot);
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+        }
+
+        .temp-box.cold i {
+            color: var(--temp-cold);
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+        }
+
+        .temp-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .menu-price {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        /* Harga Tunggal Makanan/Jus */
+        .single-price-box {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            padding-right: 0.5rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #060607;
+            padding: 6rem 4rem 3rem 4rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .footer-brand h2 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            max-width: 350px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-heading {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 1.8rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-links p, .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-socials a {
+            color: var(--text-dim);
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            display: flex;
+            justify-content: space-between;
+            color: #4B5563;
+            font-size: 0.85rem;
+        }
+
+        /* FLOATING WHATSAPP BUTTON */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+            z-index: 999;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            .navbar, section, .footer { padding-left: 2.5rem; padding-right: 2.5rem; }
+            .gallery-section { padding-left: 2.5rem; }
+            .ambiance-text { padding: 4rem; }
+            .menu-grid { column-gap: 2.5rem; }
+        }
+
+        @media (max-width: 1024px) {
+            .ambiance { grid-template-columns: 1fr; }
+            .ambiance-img { min-height: 400px; }
+            .team-grid { grid-template-columns: 1fr; gap: 3rem; max-width: 500px; }
+            .menu-grid { grid-template-columns: 1fr; row-gap: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 1.5rem 2rem; }
+            .navbar.scrolled { padding: 1rem 2rem; }
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: -100%; width: 280px; height: 100vh;
+                background-color: var(--secondary-dark);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2.5rem 0 2.5rem;
+                gap: 2rem;
+                transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 5px 0 25px rgba(0,0,0,0.3);
+                border-right: 1px solid var(--border-color);
+            }
+            .nav-links.active { left: 0; }
+            .hero h1 { font-size: 3rem; }
+            .hero-tagline { font-size: 1.3rem; }
+            .section-title { font-size: 2.4rem; }
+            .gallery-item { flex: 0 0 310px; height: 420px; }
+            .info-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-bottom { flex-direction: column; gap: 1.2rem; text-align: center; }
+            .cta-group { flex-direction: column; gap: 1rem; width: 100%; max-width: 280px; margin: 0 auto; }
+            .menu-item-main { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .price-container { width: 100%; justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR MELEBAR (GLASSMORPHISM EFFECT) -->
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <svg class="smile-logo" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="16"/>
+                <path d="M12,15 C12,15 13,14 14,14 C15,14 16,15 16,15" stroke-width="2.2"/>
+                <path d="M20,15 C20,15 21,14 22,14 C23,14 24,15 24,15" stroke-width="2.2"/>
+                <path d="M11,22 Q18,30 25,22"/>
+            </svg>
+            <span class="nav-logo">WARUNG BAHAGIA</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Beranda</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#gallery">Momen</a></li>
+            <li><a href="#team">Tim Kami</a></li>
+            <li><a href="#menu">Menu</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-hashtag">
+                <i class="fa-regular fa-face-smile"></i> 
+                #JanganLupaBahagiaKawan
+            </p>
+            <h1>Sajian Otentik,<br>Suasana Istimewa</h1>
+            <p class="hero-tagline">"Loe Harus Cobain, Kalo Engga Yaudah Liatin Aje Yang Nyobain"</p>
+            <div class="cta-group">
+                <a href="https://wa.me/6285394921813?text=Halo%20Warung%20Bahagia..." class="btn btn-primary" target="_blank">Reservasi Sekarang</a>
+                <a href="#menu" class="btn btn-secondary">Eksplor Menu</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- AMBIANCE / ABOUT -->
+    <section class="ambiance" id="about">
+        <div class="ambiance-text">
+            <span class="section-subtitle">The Experience</span>
+            <h2 class="section-title">Suasana Nyaman & Hangat di Tepi Jalan</h2>
+            <p>Nikmati malam yang mengesankan di Pulau Morotai dengan pencahayaan hangat yang elegan, penataan ruang minimalis, dan deburan angin malam yang menenangkan. Tempat sempurna untuk bercengkerama atau sekadar menikmati waktu kesendirian Anda.</p>
+        </div>
+        <div class="ambiance-img"></div>
+    </section>
+
+    <!-- HORIZONTAL SCROLL GALLERY (10 Gambar Premium) -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-header" style="text-align: left; margin-bottom: 3.5rem;">
+            <span class="section-subtitle">Our Moments</span>
+            <h2 class="section-title">Kebahagiaan & Cerita Pengunjung</h2>
+            <p style="color: var(--text-muted); margin-top: 0.6rem; font-size: 0.95rem;">Geser ke kanan untuk menjelajahi seluruh sudut estetik dan momen kehangatan di warung kami.</p>
+        </div>
+        
+        <div class="gallery-wrapper">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&auto=format&fit=crop" alt="Suasana Warung">
+                <div class="gallery-caption">
+                    <h4>Main Dining Area</h4>
+                    <p>Sudut Minimalis & Estetik</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&auto=format&fit=crop" alt="Pelanggan Menikmati Kopi">
+                <div class="gallery-caption">
+                    <h4>Coffee & Conversation</h4>
+                    <p>Momen Hangat Pelanggan</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1485686531765-ba63b07845a7?w=500&auto=format&fit=crop" alt="Area Outdoor">
+                <div class="gallery-caption">
+                    <h4>Ocean Breeze Spot</h4>
+                    <p>Suasana Santai Tepi Pantai</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=500&auto=format&fit=crop" alt="Pelanggan Makan Bersama">
+                <div class="gallery-caption">
+                    <h4>Sharing Happiness</h4>
+                    <p>Tertawa Bersama Hidangan</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=500&auto=format&fit=crop" alt="Meja Kopi Estetik">
+                <div class="gallery-caption">
+                    <h4>Aesthetic Table Setup</h4>
+                    <p>Sentuhan Detail Premium</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&auto=format&fit=crop" alt="Proses Meracik Kopi">
+                <div class="gallery-caption">
+                    <h4>Art of Brewing</h4>
+                    <p>Dibuat Dengan Ketelitian</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=500&auto=format&fit=crop" alt="Suasana Malam Hari">
+                <div class="gallery-caption">
+                    <h4>Warm Lights Vibe</h4>
+                    <p>Pencahayaan Malam Romantis</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=500&auto=format&fit=crop" alt="Pelanggan Tertawa">
+                <div class="gallery-caption">
+                    <h4>Genuine Smiles</h4>
+                    <p>Cerita Bahagia Pengunjung</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1531058020387-3be344559be6?w=500&auto=format&fit=crop" alt="Hidangan Ringan">
+                <div class="gallery-caption">
+                    <h4>Delicious Bites</h4>
+                    <p>Camilan Pendamping Kopi</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=500&auto=format&fit=crop" alt="Sudut Santai">
+                <div class="gallery-caption">
+                    <h4>Corner of Solitude</h4>
+                    <p>Sudut Tenang Untuk Kerja</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM & OWNER SECTION -->
+    <section class="team-section" id="team">
+        <div class="section-header">
+            <span class="section-subtitle">Behind The Scenes</span>
+            <h2 class="section-title">Orang-Orang di Balik Layar</h2>
+        </div>
+        
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img-box">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&auto=format&fit=crop" alt="Barista Senior">
+                </div>
+                <h3>Andi Pratama</h3>
+                <div class="role">Head Barista</div>
+                <p>"Meracik kopi terbaik dengan senyuman demi menyempurnakan malam bahagia Anda."</p>
+            </div>
+            
+            <div class="team-card" style="border-color: rgba(229, 192, 123, 0.4); transform: translateY(-4px); background-color: #16161C;">
+                <div class="team-img-box" style="border-color: var(--accent-gold);">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop" alt="Pemilik Warung Bahagia">
+                </div>
+                <h3>Siti Bahagia</h3>
+                <div class="role" style="color: #0B0B0C; background: var(--accent-gold); display: inline-block; padding: 0.2rem 1rem; font-weight: 700; border-radius: 2px;">Owner / Founder</div>
+                <p>"Warung ini dibangun di atas cinta, kebersamaan, dan impian untuk menghadirkan kebahagiaan sejati di Pulau Morotai."</p>
+            </div>
+            
+            <div class="team-card">
+                <div class="team-img-box">
+                    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&auto=format&fit=crop" alt="Kitchen Crew">
+                </div>
+                <h3>Budi Santoso</h3>
+                <div class="role">Head Pastry Chef</div>
+                <p>"Memastikan setiap porsi makanan hangat tiba di meja Anda dengan rasa yang otentik."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO VISIT CARDS -->
+    <section id="visit">
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Lokasi</h3>
+                <p>Samping Kimia Farma & Mini Central Darame,<br>Pulau Morotai</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>Jam Operasional</h3>
+                <p>Setiap Hari<br>18:00 – 00:00 WIT</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Kontak & Layanan</h3>
+                <p>+62 853-9492-1813<br>Tersedia via WhatsApp</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM MENU SECTION MELEBAR -->
+    <section class="menu-container" id="menu">
+        <div class="section-header">
+            <span class="section-subtitle">Daftar Menu</span>
+            <h2 class="section-title">Masterpiece Kuliner Kami</h2>
+        </div>
+
+        <!-- CATEGORY: KOPI -->
+        <h3 class="menu-category-title">Coffee Selection</h3>
+        <div class="menu-grid">
+            
+            <!-- Americano -->
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150&auto=format&fit=crop" alt="Americano">
+                <div class="menu-details">
+                    <div class="menu-item-main">
+                        <span class="menu-item-name">Americano</span>
+                        <div class="price-container">
+                            <div class="temp-box hot">
+                                <i class="fas fa-fire"></i>
+                                <span class="temp-label">Panas</span>
+                                <span class="menu-price">20K</span>
+                            </div>
+                            <div class="temp-box cold">
+                                <i class="fas fa-snowflake"></i>
+                                <span class="temp-label">Dingin</span>
+                                <span class="menu-price">22K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kopi Susu Betawi -->
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=150&auto=format&fit=crop" alt="Kopi Susu">
+                <div class="menu-details">
+                    <div class="menu-item-main">
+                        <span class="menu-item-name">Kopi Susu Betawi</span>
+                        <div class="price-container">
+                            <div class="temp-box hot">
+                                <i class="fas fa-fire"></i>
+                                <span class="temp-label">Panas</span>
+                                <span class="menu-price">22K</span>
+                            </div>
+                            <div class="temp-box cold">
+                                <i class="fas fa-snowflake"></i>
+                                <span class="temp-label">Dingin</span>
+                                <span class="menu-price">25K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Long Black -->
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=150&auto=format&fit=crop" alt="Long Black">
+                <div class="menu-details">
+                    <div class="menu-item-main">
+                        <span class="menu-item-name">Long Black</span>
+                        <div class="price-container">
+                            <div class="temp-box hot">
+                                <i class="fas fa-fire"></i>
+                                <span class="temp-label">Panas</span>
+                                <span class="menu-price">25K</span>
+                            </div>
+                            <div class="temp-box cold">
+                                <i class="fas fa-snowflake"></i>
+                                <span class="temp-label">Dingin</span>
+                                <span class="menu-price">27K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latte -->
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?w=150&auto=format&fit=crop" alt="Latte">
+                <div class="menu-details">
+                    <div class="menu-item-main">
+                        <span class="menu-item-name">Latte</span>
+                        <div class="price-container">
+                            <div class="temp-box hot">
+                                <i class="fas fa-fire"></i>
+                                <span class="temp-label">Panas</span>
+                                <span class="menu-price">22K</span>
+                            </div>
+                            <div class="temp-box cold">
+                                <i class="fas fa-snowflake"></i>
+                                <span class="temp-label">Dingin</span>
+                                <span class="menu-price">25K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cappucino -->
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=150&auto=format&fit=crop" alt="Cappucino">
+                <div class="menu-details">
+                    <div class="menu-item-main">
+                        <span class="menu-item-name">Cappucino</span>
+                        <div class="price-container">
+                            <div class="temp-box hot">
+                                <i class="fas fa-fire"></i>
+                                <span class="temp-label">Panas</span>
+                                <span class="menu-price">22K</span>
+                            </div>
+                            <div class="temp-box cold">
+                                <i class="fas fa-snowflake"></i>
+                                <span class="temp-label">Dingin</span>
+                                <span class="menu-price">25K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Butcher Scoot -->
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=150&auto=format&fit=crop" alt="Butcher Scoot">
+                <div class="menu-details">
+                    <div class="menu-item-main">
+                        <span class="menu-item-name">Butcher Scoot</span>
+                        <div class="price-container">
+                            <div class="temp-box hot">
+                                <i class="fas fa-fire"></i>
+                                <span class="temp-label">Panas</span>
+                                <span class="menu-price">22K</span>
+                            </div>
+                            <div class="temp-box cold">
+                                <i class="fas fa-snowflake"></i>
+                                <span class="temp-label">Dingin</span>
+                                <span class="menu-price">25K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: NON KOPI -->
+        <h3 class="menu-category-title">Fresh & Non-Coffee</h3>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=150&auto=format&fit=crop" alt="Matcha">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Matcha Depan</span><span class="single-price-box">20K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=150&auto=format&fit=crop" alt="Taro">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Taro Sudiro</span><span class="single-price-box">20K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=150&auto=format&fit=crop" alt="Jus Buah">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Jus Naga / Alpukat / Mangga</span><span class="single-price-box">22K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=150&auto=format&fit=crop" alt="Jus Nanas">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Jus Nanas</span><span class="single-price-box">18K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?w=150&auto=format&fit=crop" alt="Jus Tomat">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Jus Tomat</span><span class="single-price-box">15K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=150&auto=format&fit=crop" alt="Jeruk Susu">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Jus Jesus (Jeruk Susu)</span><span class="single-price-box">35K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=150&auto=format&fit=crop" alt="Mix Jus">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Jus Mix</span><span class="single-price-box">Mulai 8K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=150&auto=format&fit=crop" alt="Minuman Segar">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Es / Nutrisari / Air Mineral</span><span class="single-price-box">5K</span></div></div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: MAIN COURSE -->
+        <h3 class="menu-category-title">Main Course (Bikin Kenyang)</h3>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=150&auto=format&fit=crop" alt="Ayam">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Paket Ayam Blackpepper</span><span class="single-price-box">25K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1612966608997-30d411b4821c?w=150&auto=format&fit=crop" alt="Indomie">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Indomie Tanpa Telor</span><span class="single-price-box">10K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=150&auto=format&fit=crop" alt="Indomie Telur">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Indomie Pake Telor</span><span class="single-price-box">15K</span></div></div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: LIGHT BITES -->
+        <h3 class="menu-category-title">Light Bites (Bikin Penasaran)</h3>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150&auto=format&fit=crop" alt="Burger">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Burger Premium</span><span class="single-price-box">25K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=150&auto=format&fit=crop" alt="Fries">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Kentang Goreng Truffle Style</span><span class="single-price-box">18K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=150&auto=format&fit=crop" alt="Pisang Goreng">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Pisang Keju Cokelat</span><span class="single-price-box">20K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1584776296944-ab6fb57b0bdd?w=150&auto=format&fit=crop" alt="Toast">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Roti Bakar Premium</span><span class="single-price-box">20K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=150&auto=format&fit=crop" alt="Omelette">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Omelette</span><span class="single-price-box">20K</span></div></div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=150&auto=format&fit=crop" alt="Martabak">
+                <div class="menu-details"><div class="menu-item-main"><span class="menu-item-name">Martabak Telor</span><span class="single-price-box">15K</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>WARUNG BAHAGIA.</h2>
+                <p>Menyajikan kebahagiaan sejati lewat secangkir kopi pilihan dan hidangan berkualitas tinggi di tengah keindahan Pulau Morotai.</p>
+                <div class="footer-socials">
+                    <a href="https://wa.me/6285394921813" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-heading">Navigasi</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#gallery">Momen</a></li>
+                    <li><a href="#team">Tim Kami</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Hubungi</h4>
+                <ul class="footer-links">
+                    <li><p>Samping Kimia Farma, Darame</p></li>
+                    <li><p>Pulau Morotai</p></li>
+                    <li><p>+62 853-9492-1813</p></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="year"></span> Warung Bahagia. All Corporate Rights Reserved.</p>
+            <p>Design Elegant & Professional</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/6285394921813?text=Halo%20Warung%20Bahagia..." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const sections = document.querySelectorAll("section, header");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((a) => {
+                a.classList.remove("active");
+                if (a.getAttribute("href").includes(current)) {
+                    a.classList.add("active");
+                }
+            });
+        });
+
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navLinksContainer = document.querySelector(".nav-links");
+
+        mobileMenu.addEventListener("click", () => {
+            navLinksContainer.classList.toggle("active");
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
